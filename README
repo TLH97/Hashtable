@@ -2,30 +2,58 @@ ReadME Tema 1 Sturcturi de date
 
 1.	Initializare tabela hash + inserare
 
-	Pentru intializare tabela hash am creat o functie IniTH care intoarce un element de tipul TH. Am luat o variabila TH *a, pe care am alocat-o si testat-o. Am alocat apoi vectorul de bucket-uri si ulterior testat. Apoi toate campurile din a au primit valorile data prin parametrul functiei.
-	Inserarea in tabela hash insereaza in tabela un element in functie de codul generat de functia hash_f din arhiva start aplicat asupra cheii.Apoi se initializeaza o lista simplu inlantuita generica "l" cu bucket-ul tabelei corespunzator codului si a lui "ant" pentru legaturile in lista.
-	Am parcurs lista, "ant" luand pentru fiecare avans in lista valoarea lui "l". In cazul in care functia de comparare a celor 2 chei(cheia de pe pozitia "l" curenta si cheia elementelui ce se vrea inserat) intoarce 0, adica cele 2 chei sunt egale, se va inlocui elemntul vechi cu cel nou, prin eliberarea valorii vechi, a cheii, iar in sfarsit informatia de pe pozitia "l" ia valoarea "ael"(noua inserata) si functia intoarce 1.
-	In cazul in care functia de comparare nu intoarce 0, elementul va fi inserat la sfarsitul listei, prin alocarea unei liste auxiliare, testarea ei, informatia pentru aux ia valoarea "ael", iar campul urmator devine NULL. Daca ant e NULL valoarea se va insera la inceputul listei, altfel se insereaza la sfarsit.
+	Pentru intializare tabela hash am creat o functie IniTH care intoarce un element de tipul TH. 
+	Am luat o variabila TH *a, pe care am alocat-o si testat-o. Am alocat apoi vectorul de bucket-uri 
+	si ulterior testat. Apoi toate campurile din a au primit valorile data prin parametrul functiei.
+	Inserarea in tabela hash insereaza in tabela un element in functie de codul generat de functia 
+	hash_f din arhiva start aplicat asupra cheii.Apoi se initializeaza o lista simplu inlantuita generica 
+	"l" cu bucket-ul tabelei corespunzator codului si a lui "ant" pentru legaturile in lista.
+	Am parcurs lista, "ant" luand pentru fiecare avans in lista valoarea lui "l". In cazul in care functia 
+	de comparare a celor 2 chei(cheia de pe pozitia "l" curenta si cheia elementelui ce se vrea inserat) 
+	intoarce 0, adica cele 2 chei sunt egale, se va inlocui elemntul vechi cu cel nou, prin eliberarea 
+	valorii vechi, a cheii, iar in sfarsit informatia de pe pozitia "l" ia valoarea "ael"(noua inserata) 
+	si functia intoarce 1.
+	In cazul in care functia de comparare nu intoarce 0, elementul va fi inserat la sfarsitul listei, 
+	prin alocarea unei liste auxiliare, testarea ei, informatia pentru aux ia valoarea "ael", iar campul 
+	urmator devine NULL. Daca ant e NULL valoarea se va insera la inceputul listei, altfel se insereaza la sfarsit.
 
 2. 	Afisare
 
-	Pentru aifsare am facut o functie de afisare a unui element de tip Tstudent, una pentru TMaterie, una pentru afisarea unei chei de tip int si una pentru afisarea unei chei de tip char.
-	Functia de aifsare a tabelei hash parcurge bucket-urile si afiseaza fiecare cheie, element conform instructiunilor din enunt.
+	Pentru aifsare am facut o functie de afisare a unui element de tip Tstudent, una pentru TMaterie, una 
+	pentru afisarea unei chei de tip int si una pentru afisarea unei chei de tip char.
+	Functia de aifsare a tabelei hash parcurge bucket-urile si afiseaza fiecare cheie, element conform 
+	instructiunilor din enunt.
 
 3. 	Redimensionare 
 
-	Fac realocarea vectorului de bucket-uri, dublarea range-ului tabelei hash. De la jumatatea vectorului pana la sfarsit fiecare lista devine nula(pentru ca dintr-un motiv anume imi dadea Seg Fault, desi stiam ca realloc-ul realoca cu 0). Se face testarea realocarii tabelei. Fac rearanjarea elementelor prin declararea unei liste s.i.g. l, prin care toate valorile anterioare vor fi puse intr-o lista s.i.g. new, apoi inserate prin functia InsTH.
+	Fac realocarea vectorului de bucket-uri, dublarea range-ului tabelei hash. De la jumatatea vectorului 
+	pana la sfarsit fiecare lista devine nula(pentru ca dintr-un motiv anume imi dadea Seg Fault, desi stiam 
+	ca realloc-ul realoca cu 0). Se face testarea realocarii tabelei. Fac rearanjarea elementelor prin 
+	declararea unei liste s.i.g. l, prin care toate valorile anterioare vor fi puse intr-o lista s.i.g. new, 
+	apoi inserate prin functia InsTH.
 
 4.	Gasire element dupa cheie
 
-	Se calculeaza codul cheii ce se vrea gasit, in functie de tipul cheii. Se initializeaza o lista sig, care ia valoarea a->bucket[cod]. Daca aceste e NULL, se printeaza "Nu exista". Apoi se parcurge lista, daca functia de compararea intoarce 0, afisez valoarea si ies din functie. Daca f de comp nu returneaza 0, se printeaza "Nu exista".
+	Se calculeaza codul cheii ce se vrea gasit, in functie de tipul cheii. Se initializeaza o lista sig, care 
+	ia valoarea a->bucket[cod]. Daca aceste e NULL, se printeaza "Nu exista". Apoi se parcurge lista, daca 
+	functia de compararea intoarce 0, afisez valoarea si ies din functie. Daca f de comp nu returneaza 0, 
+	se printeaza "Nu exista".
 
 5.	Stergere element dupa cheie
 
-	La fel ca la gasire, calculez codul, initializez lista, daca functi de comparare return. 0, ies din bucla. Daca elementul sters s-a aflat la inceputul listei, primul element devine p->urm, altfel, se realizaeaza legaturile coresp. La final eliberez p-ul.
+	La fel ca la gasire, calculez codul, initializez lista, daca functi de comparare return. 0, ies din bucla. 
+	Daca elementul sters s-a aflat la inceputul listei, primul element devine p->urm, altfel, se realizaeaza 
+	legaturile coresp. La final eliberez p-ul.
 
-6.	main
+6.	Main
 
-	Deschid fisierele de in si out, le testez, citesc valorile din fisier, initializez tabela hash in functie de tipul cheii. Citesc operatiile, pentru insert aloc cheia, o citesc aloc un element de tipul Cell Info, iar cell->key ia valoarea cheii citite. Citesc valoarea, mat sau stud, declar o var. aux, o aloc, citesc campurile din structura TMateria sau TStudent, cell->value ia val. aux, cell->fVal ia val elibMat, iar cell->afiVal ia valoarea AfiMat. Inseresz celula cell in tabela, si incrementez nr-ul de intrari in tabela in functie de valoarea intoarsa de functia de inserare. 
+	Deschid fisierele de in si out, le testez, citesc valorile din fisier, initializez tabela hash in functie 
+	de tipul cheii. Citesc operatiile, pentru insert aloc cheia, o citesc aloc un element de tipul Cell Info, 
+	iar cell->key ia valoarea cheii citite. Citesc valoarea, mat sau stud, declar o var. aux, o aloc, citesc 
+	campurile din structura TMateria sau TStudent, cell->value ia val. aux, cell->fVal ia val elibMat, iar 
+	cell->afiVal ia valoarea AfiMat. Inseresz celula cell in tabela, si incrementez nr-ul de intrari in tabela 
+	in functie de valoarea intoarsa de functia de inserare. 
 	In caz ca load-factorul este depasit, se apeleaza functia de redimensioanre + dublarea nr-ului de bucket-uri.
-	Daca operatia citita e print, se apeleaza functia de afisare tabela hash, daca e find, se aloca cheia citita si se apeleaza functia de gasire element, daca e delete, se apeleaza functia de stergere si se decrementeaza nr-ul de intrari in tabela hash, daca functia intoarce 1. Am inchis fisierele de citire si scriere.
+	Daca operatia citita e print, se apeleaza functia de afisare tabela hash, daca e find, se aloca cheia citita 
+	si se apeleaza functia de gasire element, daca e delete, se apeleaza functia de stergere si se decrementeaza 
+	nr-ul de intrari in tabela hash, daca functia intoarce 1. Am inchis fisierele de citire si scriere.
